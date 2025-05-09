@@ -1,5 +1,7 @@
 "use server";
 
+import { createUser } from "@/lib/user";
+
 export async function signup(prevState, formData) {
   const email = formData.get("email");
   const password = formData.get("password");
@@ -19,4 +21,7 @@ export async function signup(prevState, formData) {
       errors,
     };
   }
+  //store in the  db (create a new user)
+  // never but NEVER save the passwords in plain text
+  createUser(email, password);
 }
