@@ -1,6 +1,6 @@
 "use server";
 
-export async function signup(formData) {
+export async function signup(prevState, formData) {
   const email = formData.get("email");
   const password = formData.get("password");
 
@@ -12,5 +12,11 @@ export async function signup(formData) {
 
   if (password.trim().length < 8) {
     errors.password = "Password must be at least 8 characters long.";
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return {
+      errors,
+    };
   }
 }
