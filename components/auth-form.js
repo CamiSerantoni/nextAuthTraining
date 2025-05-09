@@ -1,6 +1,11 @@
-import Link from 'next/link';
+"use client";
 
+import Link from "next/link";
+import { useFormState } from "react-dom";
+import { signup } from "@/actions/auth-actions";
 export default function AuthForm() {
+  const [formState, formAction] = useFormState(signup, {});
+
   return (
     <form id="auth-form">
       <div>
@@ -15,9 +20,7 @@ export default function AuthForm() {
         <input type="password" name="password" id="password" />
       </p>
       <p>
-        <button type="submit">
-          Create Account
-        </button>
+        <button type="submit">Create Account</button>
       </p>
       <p>
         <Link href="/">Login with existing account.</Link>
