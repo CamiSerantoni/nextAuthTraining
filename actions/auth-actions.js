@@ -2,6 +2,7 @@
 
 import { createAuthSession } from "@/lib/auth";
 import { hashUserPassword, verifyPassword } from "@/lib/hash";
+import { getUserByEmail } from "@/lib/user";
 import { createUser } from "@/lib/user";
 import { redirect } from "next/navigation";
 
@@ -66,4 +67,11 @@ export async function login(prevState, formData) {
   }
   await createAuthSession(existingUser.id);
   redirect("/training");
+}
+
+export async function auth(mode, prevState, formData) {
+  if (mode === "login") {
+    return login(prevState, formData);
+  }
+  return signup(prevState, formData);
 }
